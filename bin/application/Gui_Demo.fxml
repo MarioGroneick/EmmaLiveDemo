@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.event.*?>
+<?import fxmltableview.*?> 
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.Controller">
+	<children>
+		<BorderPane prefHeight="370.0" prefWidth="525.0">
+			<center>
+				<AnchorPane prefHeight="415.0" prefWidth="558.0"
+					BorderPane.alignment="CENTER">
+					<children>
+						<Button fx:id="bestaetigen" layoutX="368.0" layoutY="262.0"
+							mnemonicParsing="false" onAction="#bestaetigen" prefHeight="25.0"
+							prefWidth="103.0" text="Bestätigen" />
+						<Button fx:id="firstOrder" layoutX="330.0" layoutY="27.0"
+							mnemonicParsing="false" onAction="#getFirstOrder" prefHeight="51.0"
+							prefWidth="59.0" text="1" />
+						<Button fx:id="secondOrder" layoutX="391.0" layoutY="27.0"
+							mnemonicParsing="false" onAction="#getSecondOrder" prefHeight="51.0"
+							prefWidth="56.0" text="2" />
+						<Button fx:id="thirdOrder" layoutX="452.0" layoutY="27.0"
+							mnemonicParsing="false" onAction="#getThirdOrder" prefHeight="51.0"
+							prefWidth="59.0" text="3" />
+						<Button fx:id="fourthOrder" layoutX="330.0" layoutY="84.0"
+							mnemonicParsing="false" onAction="#getFourthOrder" prefHeight="51.0"
+							prefWidth="58.0" text="4" />
+						<Button fx:id="fithOrder" layoutX="390.0" layoutY="84.0"
+							mnemonicParsing="false" onAction="#getFithOrder" prefHeight="51.0"
+							prefWidth="58.0" text="5" />
+						<Button fx:id="sixthOrder" layoutX="452.0" layoutY="84.0"
+							mnemonicParsing="false" onAction="#getSixthOrder" prefHeight="51.0"
+							prefWidth="59.0" text="6" />
+						<Button fx:id="seventhOrder" layoutX="330.0" layoutY="142.0"
+							mnemonicParsing="false" onAction="#getSeventhOrder" prefHeight="51.0"
+							prefWidth="59.0" text="7" />
+						<Button fx:id="eightOrder" layoutX="391.0" layoutY="142.0"
+							mnemonicParsing="false" onAction="#getEightOrder" prefHeight="51.0"
+							prefWidth="57.0" text="8" />
+						<Button fx:id="ninthOrder" layoutX="451.0" layoutY="142.0"
+							mnemonicParsing="false" onAction="#getNinthOrder" prefHeight="51.0"
+							prefWidth="60.0" text="9" />
+						<Button fx:id="zeroButton" layoutX="366.0" layoutY="202.0"
+							mnemonicParsing="false" onAction="#getZeroButton" prefHeight="51.0"
+							prefWidth="106.0" text="0" />
+						<Button layoutX="368.0" layoutY="295.0" mnemonicParsing="false"
+							prefHeight="25.0" prefWidth="103.0" text="Abbrechen" />
+						<TableView fx:id="table" layoutX="29.0" layoutY="27.0"
+							prefHeight="307.0" prefWidth="272.0">
+							<columns>
+								<TableColumn prefWidth="174.0" text="Order">
+									<cellValueFactory>
+										<PropertyValueFactory property="name" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn prefWidth="97.0" text="Price"> 
+									<cellValueFactory>
+										<PropertyValueFactory property="price" />
+									</cellValueFactory>
+								</TableColumn>
+							</columns>
+						</TableView>
+					</children>
+				</AnchorPane>
+			</center>
+		</BorderPane>
+	</children>
+</AnchorPane>
