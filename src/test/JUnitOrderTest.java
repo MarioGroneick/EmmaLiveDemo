@@ -30,6 +30,13 @@ import javafx.scene.Parent;
 public class JUnitOrderTest extends GuiTest{
 	private Controller controller;
 	private Model model = new Model();
+	float bill = 25.55f;
+	float money1 = 25.55f;
+	float money2 = 30f;
+	float money3 = 20f;
+	float money = 0f;
+	float change;
+	boolean digitalPay = true;
 	@Rule
 	  public final ExpectedException exception = ExpectedException.none();
 	/**
@@ -47,18 +54,14 @@ public class JUnitOrderTest extends GuiTest{
 		
 		assertThat(model.calcBill(orders), (samePropertyValuesAs(orders.get(orders.size()-1).getPrice())));
 	}
-	
 	@Test
-	public void testPayMethod() throws Exception{
-		float bill = 25.55f;
-		float money1 = 25.55f;
-		float money2 = 30f;
-		float money3 = 20f;
-		float money = 0f;
-		float change;
-		boolean digitalPay = true;
+	public void testPayMethodWithDigitalPay() {
 		change = model.pay(bill, money, digitalPay);
 		assertTrue((change == 0));
+	}
+	@Test
+	public void testPayMethod() throws Exception{
+		
 		change = model.pay(bill, money1, !digitalPay);
 		assertTrue((change == 0));
 		change = model.pay(bill, money2, !digitalPay);
