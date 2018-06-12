@@ -9,7 +9,9 @@ import java.util.List;
 import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
 import org.hamcrest.object.HasToString;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.loadui.testfx.GuiTest;
 
 import com.nitorcreations.matchers.ReflectionEqualsMatcher;
@@ -25,9 +27,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 
-public class OrderTest extends GuiTest{
+public class JUnitOrderTest extends GuiTest{
 	private Controller controller;
 	private Model model = new Model();
+	@Rule
+	  public final ExpectedException exception = ExpectedException.none();
 	/**
 	 * Anweisungsüberdeckender Test für das Zusammenrechnen einer Bestellung
 	 * 
@@ -45,8 +49,24 @@ public class OrderTest extends GuiTest{
 	}
 	
 	@Test
-	public void testPayMethod(){
-		
+	public void testPayMethod() throws Exception{
+		float bill = 25.55f;
+		float money1 = 25.55f;
+		float money2 = 30f;
+		float money3 = 20f;
+		float money = 0f;
+		float change;
+		boolean digitalPay = true;
+		change = model.pay(bill, money, digitalPay);
+		assertTrue((change == 0));
+		change = model.pay(bill, money1, !digitalPay);
+		assertTrue((change == 0));
+		change = model.pay(bill, money2, !digitalPay);
+		assertTrue((change == (bill-money2)));
+		exception.expect(Exception.class);
+		change = model.pay(bill, money3, !digitalPay);
+		change = model.pay(bill, money, !digitalPay);
+		assertTrue(change == bill);
 	}
 	
 /**
