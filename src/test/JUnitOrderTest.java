@@ -1,34 +1,27 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
-import org.hamcrest.object.HasToString;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.loadui.testfx.GuiTest;
 
-import com.nitorcreations.matchers.ReflectionEqualsMatcher;
-
-import application.Controller;
-import application.Main;
 import application.Model;
 import application.Order;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 
 
 public class JUnitOrderTest extends GuiTest{
-	private Controller controller;
 	private Model model = new Model();
 	float bill = 25.55f;
 	float money1 = 25.55f;
@@ -55,21 +48,24 @@ public class JUnitOrderTest extends GuiTest{
 		assertThat(model.calcBill(orders), (samePropertyValuesAs(orders.get(orders.size()-1).getPrice())));
 	}
 	@Test
-	public void testPayMethodWithDigitalPay() {
-		change = model.pay(bill, money, digitalPay);
+	public void testPayMethodWithDigitalPay() throws Exception {
+		change = model.pay(this.bill, this.money, this.digitalPay);
 		assertTrue((change == 0));
 	}
 	@Test
-	public void testPayMethod() throws Exception{
-		
+	public void testPayMethodNullsumWithoutDigPay() throws Exception {
 		change = model.pay(bill, money1, !digitalPay);
 		assertTrue((change == 0));
+	}
+	@Test
+	public void testPayMethodWithPosChange() throws Exception {
 		change = model.pay(bill, money2, !digitalPay);
 		assertTrue((change == (bill-money2)));
+	}
+	@Test
+	public void testPayMethodWithNegChange() throws Exception {
 		exception.expect(Exception.class);
 		change = model.pay(bill, money3, !digitalPay);
-		change = model.pay(bill, money, !digitalPay);
-		assertTrue(change == bill);
 	}
 	
 /**
