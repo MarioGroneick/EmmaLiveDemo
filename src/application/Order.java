@@ -9,7 +9,6 @@ public class Order {
 		this.name = name;
 		this.price = price;
 	}
-	
 	public String getName() {
 		return name;
 	}

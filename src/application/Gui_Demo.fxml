@@ -3,56 +3,61 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.scene.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.event.*?>
 <?import fxmltableview.*?> 
 <?import javafx.scene.control.cell.*?> 
 <?import javafx.collections.*?> 
+<?import javafx.scene.text.*?>
+
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="application.Controller">
 	<children>
-		<BorderPane prefHeight="370.0" prefWidth="525.0">
+		<BorderPane prefHeight="600.0" prefWidth="800.0">
 			<center>
-				<AnchorPane prefHeight="415.0" prefWidth="558.0"
+				<AnchorPane prefHeight="600.0" prefWidth="800.0"
 					BorderPane.alignment="CENTER">
 					<children>
 						<Button fx:id="bestaetigen" layoutX="368.0" layoutY="262.0"
 							mnemonicParsing="false" onAction="#bestaetigen" prefHeight="25.0"
-							prefWidth="103.0" text="Bestätigen" />
-						<Button fx:id="firstOrder" layoutX="330.0" layoutY="27.0"
+							prefWidth="150.0" text="Bestätigen" />
+						<Button fx:id="firstOrder" layoutX="310" layoutY="27.0"
 							mnemonicParsing="false" onAction="#getFirstOrder" prefHeight="51.0"
-							prefWidth="59.0" text="1" />
-						<Button fx:id="secondOrder" layoutX="391.0" layoutY="27.0"
+							prefWidth="130" text="Wasser" />
+						<Button fx:id="secondOrder" layoutX="460" layoutY="27.0"
 							mnemonicParsing="false" onAction="#getSecondOrder" prefHeight="51.0"
-							prefWidth="56.0" text="2" />
-						<Button fx:id="thirdOrder" layoutX="452.0" layoutY="27.0"
+							prefWidth="130.0" text="Vorspeise" />
+						<Button fx:id="thirdOrder" layoutX="610" layoutY="27.0"
 							mnemonicParsing="false" onAction="#getThirdOrder" prefHeight="51.0"
-							prefWidth="59.0" text="3" />
-						<Button fx:id="fourthOrder" layoutX="330.0" layoutY="84.0"
+							prefWidth="130.0" text="Angebotsmenu" />
+						<Button fx:id="fourthOrder" layoutX="310" layoutY="84.0"
 							mnemonicParsing="false" onAction="#getFourthOrder" prefHeight="51.0"
-							prefWidth="58.0" text="4" />
-						<Button fx:id="fithOrder" layoutX="390.0" layoutY="84.0"
+							prefWidth="130.0" text="Menu 1" />
+						<Button fx:id="fithOrder" layoutX="460" layoutY="84.0"
 							mnemonicParsing="false" onAction="#getFithOrder" prefHeight="51.0"
-							prefWidth="58.0" text="5" />
-						<Button fx:id="sixthOrder" layoutX="452.0" layoutY="84.0"
+							prefWidth="130.0" text="Menu 2" />
+						<Button fx:id="sixthOrder" layoutX="610" layoutY="84.0"
 							mnemonicParsing="false" onAction="#getSixthOrder" prefHeight="51.0"
-							prefWidth="59.0" text="6" />
-						<Button fx:id="seventhOrder" layoutX="330.0" layoutY="142.0"
+							prefWidth="130.0" text="Menu 3" />
+						<Button fx:id="seventhOrder" layoutX="310" layoutY="142.0"
 							mnemonicParsing="false" onAction="#getSeventhOrder" prefHeight="51.0"
-							prefWidth="59.0" text="7" />
-						<Button fx:id="eightOrder" layoutX="391.0" layoutY="142.0"
+							prefWidth="130.0" text="Nachspeise 1" />
+						<Button fx:id="eightOrder" layoutX="460" layoutY="142.0"
 							mnemonicParsing="false" onAction="#getEightOrder" prefHeight="51.0"
-							prefWidth="57.0" text="8" />
-						<Button fx:id="ninthOrder" layoutX="451.0" layoutY="142.0"
+							prefWidth="130.0" text="Nachspeise 2" />
+						<Button fx:id="ninthOrder" layoutX="610" layoutY="142.0"
 							mnemonicParsing="false" onAction="#getNinthOrder" prefHeight="51.0"
-							prefWidth="60.0" text="9" />
+							prefWidth="130.0" text="Nachspeise 3" />
 						<Button fx:id="zeroButton" layoutX="366.0" layoutY="202.0"
 							mnemonicParsing="false" onAction="#getZeroButton" prefHeight="51.0"
-							prefWidth="106.0" text="0" />
+							prefWidth="150.0" text="Trinkgeld hinzufügen" />
 						<Button layoutX="368.0" layoutY="295.0" mnemonicParsing="false"
-							prefHeight="25.0" prefWidth="103.0" text="Abbrechen" />
+							prefHeight="25.0" prefWidth="150.0" text="Korrigieren" onAction="#korrigieren" />
+						<Button fx:id="salatButton" layoutX="29.0" layoutY="350" mnemonicParsing="false"
+							prefHeight="25.0" prefWidth="174.0" text="Salat" onAction="#salatOptionen" />
 						<TableView fx:id="table" layoutX="29.0" layoutY="27.0"
 							prefHeight="307.0" prefWidth="272.0">
 							<columns>
@@ -68,6 +73,30 @@
 								</TableColumn>
 							</columns>
 						</TableView>
+						<HBox fx:id="salatBox" spacing="15" layoutX="30" layoutY="400" visible="false">
+							<VBox spacing="5">	
+								<Label text="Salatsorte :" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+								<Button fx:id="rukola" text="Rukola" HBox.hgrow="ALWAYS" onAction="#addRukola" maxWidth="Infinity" />
+								<Button fx:id="bergsalat" text="Bergsalat" HBox.hgrow="ALWAYS" onAction="#addBergsalat" maxWidth="Infinity" />
+								<Button fx:id="eissalat" text="Eissalat" HBox.hgrow="ALWAYS" onAction="#addEissalat" maxWidth="Infinity" />
+							</VBox>
+							<VBox spacing="5">
+								<Label text="Dressing :" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+								<Button fx:id="balsamiko" text="Balsamiko" HBox.hgrow="ALWAYS" onAction="#addBalsamiko"  maxWidth="Infinity" />
+								<Button fx:id="joguhrt" text="Joghurt" HBox.hgrow="ALWAYS" onAction="#addJoguhrt" maxWidth="Infinity" />
+								<Button fx:id="kraeuter" text="Kräuter" HBox.hgrow="ALWAYS" onAction="#addKraeuter" maxWidth="Infinity" />
+							</VBox>
+							<VBox spacing="5">
+								<Label text="Topping :" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+								<Button fx:id="parmesan" text="Parmesan" HBox.hgrow="ALWAYS" onAction="#addParmesan" maxWidth="Infinity" />
+								<Button fx:id="croutons" text="Croutons" HBox.hgrow="ALWAYS" onAction="#addCroutons"  maxWidth="Infinity" />
+								<Button fx:id="schinken" text="Schinken" HBox.hgrow="ALWAYS" onAction="#addSchinken" maxWidth="Infinity" />
+							</VBox>
+							<VBox spacing="20">
+								<Button fx:id="salatBestaetigen" text="bestätige Salat" HBox.hgrow="ALWAYS" onAction="#bestaetigeSalat" maxWidth="Infinity" />
+								<Button fx:id="salatBestaetigen" text="Salat zurücksetzen" HBox.hgrow="ALWAYS" onAction="#salatZuruecksetzen" maxWidth="Infinity" />
+							</VBox>
+						</HBox>
 					</children>
 				</AnchorPane>
 			</center>

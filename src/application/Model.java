@@ -33,4 +33,12 @@ public class Model {
 		} 
 		return sum;
 	}
+	
+	public float calcSalatPrice(List<salatAuswahl> auswahl) {
+		float price = 0;
+		for (salatAuswahl salatAuswahl : auswahl) {
+			price += salatAuswahl.getPrice();
+		}
+		return price;
+	}
 }

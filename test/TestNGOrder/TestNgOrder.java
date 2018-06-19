@@ -1,8 +1,5 @@
 package TestNGOrder;
 
-import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +8,7 @@ import org.testng.annotations.Test;
 
 import application.Model;
 import application.Order;
+import application.salatAuswahl;
 
 public class TestNgOrder {
 	private Model model = new Model();
@@ -31,8 +29,6 @@ public class TestNgOrder {
 		orders.add(new Order("Vorspeise", 0.99f));
 		orders.add(new Order("Gesamtbetrag", 1.98f));
 		
-		
-		//model.calcBill(orders), (samePropertyValuesAs(orders.get(orders.size()-1).getPrice()))
 		Assert.assertEquals(model.calcBill(orders), orders.get(orders.size()-1).getPrice());
 	}
 	
@@ -54,5 +50,13 @@ public class TestNgOrder {
 	@Test(expectedExceptions = Exception.class)
 	public void testPayMethodWithNegChange() throws Exception {
 		change = model.pay(bill, money3, !digitalPay);
+	}
+	@Test
+	public void testSalatAuswahl() {
+		ArrayList<salatAuswahl> auswahl = new ArrayList<>();
+		auswahl.add(new salatAuswahl("Rukola", 0.5f));
+		auswahl.add(new salatAuswahl("Rukola", 0.5f));
+		float price = model.calcSalatPrice(auswahl);
+		Assert.assertEquals(price, 1.0f);
 	}
 }
